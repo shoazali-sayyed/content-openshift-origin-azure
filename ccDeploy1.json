@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {},
     "variables": {
-        "_artifactsLocation": "https://github.com/shoazali-sayyed/content-openshift-origin-azure/tree/master",
+        "_artifactsLocation": "https://raw.githubusercontent.com/linuxacademy/content-openshift-origin-azure master",
 		    "nodePrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/nodePrep.sh')]",
         "infraPrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/infraPrep.sh')]",
 		    "masterPrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/masterPrep.sh')]",
