@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {},
     "variables": {
-        "_artifactsLocation": "https://raw.githubusercontent.com/linuxacademy/content-openshift-origin-azure master",
+        "_artifactsLocation": "https://github.com/shoazali-sayyed/content-openshift-origin-azure master",
 		    "nodePrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/nodePrep.sh')]",
         "infraPrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/infraPrep.sh')]",
 		    "masterPrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/masterPrep.sh')]",
@@ -23,7 +23,7 @@
 		    "imageRef": {
 			    "publisher": "Openlogic",
 			    "offer": "CentOS",
-			    "sku": "7.5",
+			    "sku": "7.3",
 			    "version": "latest"
 		    },
         "keyVault": {
@@ -44,7 +44,7 @@
         },
         "masterVM": {
             "name": "masterVM-0",
-            "vmSize": "Standard_B1ms",
+            "vmSize": "Standard_F2s_v2",
             "dataDiskSize": 32,
             "nicName": "masterVM-nic1",
             "pubIpName": "masterVM-pip1",
@@ -53,7 +53,7 @@
         },
         "infraVM": {
             "name": "infraVM-0",
-            "vmSize": "Standard_B1ms",
+            "vmSize": "Standard_F2s_v2",
             "dataDiskSize": 32,
             "nicName": "infraVM-nic1",
             "pubIpName": "infraVM-pip1",
@@ -62,7 +62,7 @@
         },
         "appnodeVM": {
             "name": "appnodeVM-0",
-            "vmSize": "Standard_B1ms",
+            "vmSize": "Standard_F2s_v2",
             "dataDiskSize": 32,
             "nicName": "appnodeVM-nic1",
             "pubIpName": "appnodeVM-pip1",
@@ -71,7 +71,7 @@
         } ,
         "bastionVM": {
             "name": "bastionVM-0",
-            "vmSize": "Standard_B1ms",
+            "vmSize": "Standard_F2s_v2",
             "nicName": "bastionVM-nic1",
             "pubIpName": "bastionVM-pip1",
             "pubIpType": "Dynamic",
@@ -83,7 +83,7 @@
             "type": "Microsoft.KeyVault/vaults",
             "name": "[variables('keyVault').name]",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2018-02-14",
+            "apiVersion": "2016-10-01",
             "dependsOn": [
             "[concat('Microsoft.Compute/virtualMachines/', variables('masterVM').name)]"
             ],
@@ -118,7 +118,7 @@
           {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "name": "[concat(variables('keyVault').name, '/', variables('keyVault').secretName)]",
-            "apiVersion": "2018-02-14",
+            "apiVersion": "2016-10-01",
             "dependsOn": [
               "[concat('Microsoft.KeyVault/vaults/', variables('keyVault').name)]"
             ],
@@ -127,7 +127,7 @@
             }
           },
           {
-              "apiVersion": "2016-03-30",
+              "apiVersion": "2017-10-01",
               "type": "Microsoft.Network/virtualNetworks",
               "name": "[variables('vNet1').name]",
               "location": "[resourceGroup().location]",
@@ -174,7 +174,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('storageAccountName')]",
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "sku": {
               "name": "Standard_LRS"
@@ -185,7 +185,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('storeageAccountpersistentVolume1')]",
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "sku": {
               "name": "Standard_LRS"
@@ -194,7 +194,7 @@
             "properties": {}
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('masterVM').pubIpName]",
             "location": "[resourceGroup().location]",
@@ -203,7 +203,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('infraVM').pubIpName]",
             "location": "[resourceGroup().location]",
@@ -212,7 +212,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('appnodeVM').pubIpName]",
             "location": "[resourceGroup().location]",
@@ -221,7 +221,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('bastionVM').pubIpName]",
             "location": "[resourceGroup().location]",
@@ -231,7 +231,7 @@
         },
 
         {
-            "apiVersion": "2015-06-15",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('networkSecurityGroupName')]",
             "location": "[resourceGroup().location]",
@@ -255,7 +255,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('masterVM').nicName]",
             "location": "[resourceGroup().location]",
@@ -282,7 +282,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('infraVM').nicName]",
             "location": "[resourceGroup().location]",
@@ -309,7 +309,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('appnodeVM').nicName]",
             "location": "[resourceGroup().location]",
@@ -336,7 +336,7 @@
             }
         },
         {
-            "apiVersion": "2017-06-01",
+            "apiVersion": "2017-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('bastionVM').nicName]",
             "location": "[resourceGroup().location]",
@@ -419,7 +419,7 @@
               "diagnosticsProfile": {
                 "bootDiagnostics": {
                   "enabled": true,
-                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2016-01-01').primaryEndpoints.blob)]"
+                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2015-06-15').primaryEndpoints.blob)]"
                 }
               }
             }
@@ -480,7 +480,7 @@
               "diagnosticsProfile": {
                 "bootDiagnostics": {
                   "enabled": true,
-                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2016-01-01').primaryEndpoints.blob)]"
+                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2015-06-15').primaryEndpoints.blob)]"
                 }
               }
             }
@@ -542,7 +542,7 @@
               "diagnosticsProfile": {
                 "bootDiagnostics": {
                   "enabled": true,
-                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2016-01-01').primaryEndpoints.blob)]"
+                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2015-06-15').primaryEndpoints.blob)]"
                 }
               }
             }
@@ -596,7 +596,7 @@
               "diagnosticsProfile": {
                 "bootDiagnostics": {
                   "enabled": true,
-                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2016-01-01').primaryEndpoints.blob)]"
+                  "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2015-06-15').primaryEndpoints.blob)]"
                 }
               }
             }
