@@ -10,7 +10,7 @@
         "bastionPrepScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/bastionPrep.sh')]",
 		    "openshiftDeploymentScriptUrl": "[concat(variables('_artifactsLocation'), '/scripts/deployOKD.sh')]",
         "nodePrepScriptFileName": "nodePrep.sh",
-	"infraPrepScriptFilename": "infraPrep.sh"   
+	"infraPrepScriptFilename": "infraPrep.sh",   
         "masterPrepScriptFileName": "masterPrep.sh",
         "bastionPrepScriptFileName": "bastionPrep.sh",
         "openshiftDeploymentScriptFileName": "deployOKD.sh",
