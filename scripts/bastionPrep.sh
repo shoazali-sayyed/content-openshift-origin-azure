@@ -40,9 +40,9 @@ echo $(date) " - Entries added to host file"
 
 echo $(date) " - Adding SSH keys"
 
-wget https://raw.githubusercontent.com/shoazali-sayyed/content-openshift-origin-azure/tree/master/ssh/id_rsa -P /home/azureuser/.ssh/
+wget https://raw.githubusercontent.com/shoazali-sayyed/content-openshift-origin-azure/master/ssh/id_rsa -P /home/azureuser/.ssh/
 
-wget https://raw.githubusercontent.com/shoazali-sayyed/content-openshift-origin-azure/tree/master/ssh/id_rsa.pub -P /home/azureuser/.ssh/
+wget https://raw.githubusercontent.com/shoazali-sayyed/content-openshift-origin-azure/master/ssh/id_rsa.pub -P /home/azureuser/.ssh/
 
 chown -R azureuser:azureuser /home/azureuser/.ssh/id_rsa*
 chmod 600 /home/azureuser/.ssh/id_rsa*
