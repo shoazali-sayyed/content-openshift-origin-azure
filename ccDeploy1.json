@@ -23,7 +23,7 @@
 		    "imageRef": {
 			    "publisher": "Openlogic",
 			    "offer": "CentOS",
-			    "sku": "7.3",
+			    "sku": "7.5",
 			    "version": "latest"
 		    },
         "keyVault": {
